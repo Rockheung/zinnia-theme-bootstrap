@@ -17,6 +17,14 @@
   </div>
 </aside>
 -->
+<form method="get" action="{% url 'zinnia:entry_search' %}" class="navbar-form navbar-left">
+  <div class="form-group">
+    <input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />
+  </div>
+  <button type="submit" name="submit" class="btn btn-default btn-sm">
+    <span class="glyphicon glyphicon-search"></span>
+  </button>
+</form>
 {% if user.is_authenticated %}
 <aside id="widget-tools" class="widget panel panel-danger">
   <div class="panel-heading">
@@ -90,10 +98,12 @@
   {% get_random_entries %}
 </aside>
 -->
+<!--
 <aside id="widget-populars" class="widget panel panel-default">
   <div class="panel-heading">
     {% trans "Popular entries" %}
   </div>
   {% get_popular_entries %}
 </aside>
+-->
 {% endblock sidebar %}
