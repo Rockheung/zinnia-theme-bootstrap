@@ -27,6 +27,56 @@
       p.entry-discussions {
         margin-bottom: 0px;
       }
+
+      .search-form .form-group {
+        float: right !important;
+        transition: all 0.35s, border-radius 0s;
+        width: 32px;
+        height: 32px;
+        background-color: #fff;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        border-radius: 25px;
+        border: 1px solid #ccc;
+      }
+      .search-form .form-group input.form-control {
+        padding-right: 20px;
+        border: 0 none;
+        background: transparent;
+        box-shadow: none;
+        display:block;
+      }
+      .search-form .form-group input.form-control::-webkit-input-placeholder {
+        display: none;
+      }
+      .search-form .form-group input.form-control:-moz-placeholder {
+        /* Firefox 18- */
+        display: none;
+      }
+      .search-form .form-group input.form-control::-moz-placeholder {
+        /* Firefox 19+ */
+        display: none;
+      }
+      .search-form .form-group input.form-control:-ms-input-placeholder {
+        display: none;
+      }
+      .search-form .form-group:hover,
+      .search-form .form-group.hover {
+        width: 100%;
+        border-radius: 4px 25px 25px 4px;
+      }
+      .search-form .form-group span.form-control-feedback {
+        float: right !important;
+        position: relative;
+        top: -37px;
+        right: -2px;
+        z-index: 2;
+        display: block;
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        color: #3596e0;
+      }
     </style>
     <!--[if lt IE 9]>
         <script src="{% static "zinnia_bootstrap/assets/js/html5shiv.js" %}"></script>
@@ -71,13 +121,13 @@
           <ul class="nav navbar-nav navbar-left">
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <!--
             {% url 'zinnia:category_list' as category_list_url %}
             <li {% if category_list_url in request.path %}class="active"{% endif %}>
               <a href="{{ category_list_url }}" title="{% trans "Category list" %}">
                 {% trans "Categories" %}
               </a>
             </li>
-            <!--
             {% url 'zinnia:author_list' as author_list_url %}
             <li {% if author_list_url in request.path %}class="active"{% endif %}>
               <a href="{{ author_list_url }}" title="{% trans "Author list" %}">
@@ -85,6 +135,7 @@
               </a>
             </li>
             -->
+            <!--
             {% url 'zinnia:tag_list' as tag_list_url %}
             <li {% if tag_list_url in request.path %}class="active"{% endif %}>
               <a href="{{ tag_list_url }}" title="{% trans "Tag list" %}">
@@ -100,13 +151,26 @@
               </a>
             </li>
             <li class="divider-vertical"></li>
-            <!--
             <li>
               <a href="{% url 'zinnia:entry_feed' %}" title="{% trans "RSS Feed of latest entries" %}" class="feeds">
                 {% trans "RSS Feed" %}
               </a>
             </li>
             -->
+            <div class="container">
+              <div class="row">
+                <div class="col-md-9 col-md-offset-3">
+                  <form action="{% url 'zinnia:entry_search' %}" class="navbar-form search-form">
+                    <div class="form-group has-feedback">
+                      <label for="search" class="sr-only">Search</label>
+                      <input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />
+                      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!--
             <form method="get" action="{% url 'zinnia:entry_search' %}" class="navbar-form navbar-left">
               <div class="form-group">
                 <input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />
@@ -115,6 +179,7 @@
                 <span class="glyphicon glyphicon-search"></span>
               </button>
             </form>
+            -->
           </ul>
         </div>
       </div>
