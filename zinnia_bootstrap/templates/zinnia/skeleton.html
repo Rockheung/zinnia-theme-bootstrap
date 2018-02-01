@@ -15,14 +15,18 @@
     {% block meta %}{% endblock meta %}
     <link rel="pingback" href="/xmlrpc/" />
     <link rel="home" href="{% url 'zinnia:entry_archive_index' %}" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--
     <link rel="stylesheet" href="{% static "zinnia_bootstrap/bootstrap/css/bootstrap.min.css" %}" />
+    -->
     <style type="text/css">
       body {
         padding-top: 70px;
       }
       body > nav img {
-        margin-top: 5px;
-        margin-left: 10px;
+        margin-top: 1px;
+        margin-bottom: 1px;
       }
       p.entry-discussions {
         margin-bottom: 0px;
@@ -30,21 +34,25 @@
       a.navbar-brand {
         padding-top: 8px;
         padding-bottom: 8px;
-      }
-      img.home-img {
-        vertical-align:middle;
-        margin-top: 1px;
-        margin-left: 0px;
-        margin-bottom: 1px;
+        padding-left: 0px;
+        padding-right: 0px;
       }
 
+      .container-fluid {
+        padding:0px;
+      }
+
+      .col-centered {
+        float: none;
+        margin: 0 auto !important;
+      }
       .search-form .form-group {
         float: right !important;
         transition: all 0.35s, border-radius 0s;
         width: 32px;
         height: 32px;
-        margin-top: 1px;
-        margin-bottom: 1px;
+        margin-top: 9px;
+        margin-bottom: 9px;
         background-color: #fff;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
         border-radius: 25px;
@@ -140,35 +148,68 @@
 
             <li><a href="#">Portfolio</a></li>
             <li><a href="#">Contact</a></li>
-          </ul>
-        </nav>
+          </li>
+        </ul>
+      </nav>
 
-      </div>
+    </div>
+
 
     <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">{% trans "Toggle navigation" %}</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="{% url 'zinnia:entry_archive_index' %}" title="Rockheung's Playground" class="navbar-brand" rel="home">
-            <img src="{% static "zinnia_bootstrap/img/home.png" %}" class="home-img img-rounded" alt="Rockheung's Playground" />
-          </a>
+            <!--
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">{% trans "Toggle navigation" %}</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            -->
         </div>
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+      <div class="container-fluid">
+        <div class="row">
+
+          <!-- toggle button -->
+          <div id="content" class="col-xs-6 col-sm-4">
+            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+              <span class="sr-only">{% trans "Toggle navigation" %}</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <i class="glyphicon glyphicon-align-left"></i>
+            </button>
+          </div>
+
+          <div class="">
+              <div class="pull-right">
+                <a href="{% url 'zinnia:entry_archive_index' %}" title="Rockheung's Playground" class="navbar-brand" rel="home">
+                  <img src="{% static "zinnia_bootstrap/img/home.png" %}" class="img-rounded" alt="Rockheung's Playground" />
+                </a>
+              </div>
+          </div>
+
+          <div class="clearfix visible-xs"></div>
+
+          <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+              <form action="{% url 'zinnia:entry_search' %}" class="search-form">
+                <div class="form-group has-feedback">
+                  <label for="search" class="sr-only">Search</label>
+                  <input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />
+                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                </div>
+              </form>
+          </div>
+
+        </div>
+      </div>
+      <!--
+      <div class="container">
+        <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-left">
-            <div id="content">
-              <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                <i class="glyphicon glyphicon-align-left"></i>
-                Toggle Sidebar
-              </button>
-              <div>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <!--
             {% url 'zinnia:category_list' as category_list_url %}
             <li {% if category_list_url in request.path %}class="active"{% endif %}>
               <a href="{{ category_list_url }}" title="{% trans "Category list" %}">
@@ -181,8 +222,6 @@
                 {% trans "Authors" %}
               </a>
             </li>
-            -->
-            <!--
             {% url 'zinnia:tag_list' as tag_list_url %}
             <li {% if tag_list_url in request.path %}class="active"{% endif %}>
               <a href="{{ tag_list_url }}" title="{% trans "Tag list" %}">
@@ -203,21 +242,6 @@
                 {% trans "RSS Feed" %}
               </a>
             </li>
-            -->
-            <div class="container">
-              <div class="row">
-                <div class="col-md-9 col-md-offset-3">
-                  <form action="{% url 'zinnia:entry_search' %}" class="navbar-form search-form">
-                    <div class="form-group has-feedback">
-                      <label for="search" class="sr-only">Search</label>
-                      <input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />
-                      <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <!--
             <form method="get" action="{% url 'zinnia:entry_search' %}" class="navbar-form navbar-left">
               <div class="form-group">
                 <input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />
@@ -226,10 +250,10 @@
                 <span class="glyphicon glyphicon-search"></span>
               </button>
             </form>
-            -->
           </ul>
         </div>
       </div>
+      -->
     </nav>
     {% block slider %}{% endblock %}
     <div class="container">
@@ -267,7 +291,13 @@
         </div>
       </div>
     </div>
+    <!--
     <script type="text/javascript" src="{% static "zinnia_bootstrap/assets/js/jquery.js" %}"></script>
     <script type="text/javascript" src="{% static "zinnia_bootstrap/bootstrap/js/bootstrap.min.js" %}"></script>
+    -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>
 </html>
