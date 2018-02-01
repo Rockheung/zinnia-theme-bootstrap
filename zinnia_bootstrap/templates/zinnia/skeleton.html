@@ -21,9 +21,6 @@
     <link rel="stylesheet" href="{% static "zinnia_bootstrap/bootstrap/css/bootstrap.min.css" %}" />
     -->
     <style type="text/css">
-      body {
-        padding-top: 70px;
-      }
       body > nav img {
         margin-top: 1px;
         margin-bottom: 1px;
@@ -34,6 +31,14 @@
 
       a.aps-pos {
         position: absolute;
+      }
+      .navbar {
+        padding: 15px 10px;
+        background: #fff;
+        border: none;
+        border-radius: 0;
+        margin-bottom: 40px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
       }
       a.navbar-brand {
         padding-top: 8px;
@@ -82,6 +87,15 @@
         #sidebar.active {
           margin-left: 0;
         }
+        /*
+        .navbar{
+          width: 2048;
+          float:none;
+          margin: 0 auto;
+          display: table;
+          table-layout: fixed;
+        }
+        */
       }
       /*
       ADDITIONAL DEMO STYLE, NOT IMPORTANT TO MAKE THINGS WORK BUT TO MAKE IT A BIT NICER :)
@@ -150,14 +164,23 @@
         background: #6d7fcc;
       }
       #content {
+        width: 100%;
         padding: 20px;
         min-height: 100vh;
         transition: all 0.3s;
       }
 
+      /*
+      .container {
+        width: 100%;
+      }
+
       .container-fluid {
         padding:0px;
+        margin-left: auto;
+        margin-right: auto;
       }
+      */
 
       .search-form .form-group {
         float: right !important;
@@ -270,23 +293,23 @@
       </nav>
 
       <div id="content">
-        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+        <nav class="navbar navbar-default" role="navigation">
           <div class="container">
             <div class="navbar-header">
-              <!--
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">{% trans "Toggle navigation" %}</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              -->
             </div>
 
             <div class="container-fluid">
               <div class="row">
 
                 <!-- toggle button -->
+                <!--
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">{% trans "Toggle navigation" %}</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                -->
                 <div class="col-xs-6 col-sm-4">
                   <button type="button" id="sidebarCollapse" class="btn navbar-btn">
                     <span class="sr-only">{% trans "Toggle navigation" %}</span>
