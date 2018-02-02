@@ -54,8 +54,10 @@
         height: 0px;
       }
       img.home-img {
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-      border: 1px solid #ccc;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        border: 1px solid #ccc;
+        width: 32px;
+        height: 32px;
       }
 
       .navbar-btn {
@@ -111,7 +113,6 @@
       a[aria-expanded="true"]::before {
         content: '\e260';
       }
-
       @media (max-width: 768px) {
         #sidebar {
           margin-left: -250px;
@@ -125,7 +126,28 @@
         #content.active {
           width: calc(100% - 250px);
         }
+        #content.active .container-fluid {
+          min-width: 320px;
+        }
       }
+
+      /*
+      @media (max-width: 320px) {
+        #sidebar {
+          margin-left: -250px;
+        }
+        #sidebar.active {
+          margin-left: 0;
+        }
+        #content {
+          width: 100%;
+        }
+        #content.active {
+          width: calc(100% - 250px);
+        }
+      }
+      */
+
       /*
       ADDITIONAL DEMO STYLE, NOT IMPORTANT TO MAKE THINGS WORK BUT TO MAKE IT A BIT NICER :)
        */
@@ -359,9 +381,10 @@
             </div>
 
             <div class="container-fluid">
+              <div class="row">
 
               <!-- toggle button -->
-              <div class="col-xs-6 col-sm-4">
+              <div class="col-xs-2 col-sm-4" style="z-index: 500;">
                 <button type="button" id="sidebarCollapse" class="btn navbar-btn">
                   <span class="sr-only">{% trans "Toggle navigation" %}</span>
                   <span class="icon-bar"></span>
@@ -371,7 +394,7 @@
                 </button>
               </div>
 
-              <div class="visible-xs col-xs-6">
+              <div class="visible-xs col-xs-2 col-xs-push-8">
                 <div class="pull-right">
                   <a href="{% url 'zinnia:entry_archive_index' %}" title="Rockheung's Playground" class="navbar-brand" rel="home">
                     <img src="{% static "zinnia_bootstrap/img/home.png" %}" class="img-rounded home-img" alt="Rockheung's Playground" />
@@ -397,6 +420,7 @@
                     <span class="glyphicon glyphicon-search form-control-feedback"></span>
                   </div>
                 </form>
+              </div>
               </div>
 
             </div>
@@ -457,7 +481,9 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-xs-10 col-xs-push-1">
-              {% block breadcrumbs %}{% endblock %}
+              <div class="hidden-xs">
+                {% block breadcrumbs %}{% endblock %}
+              </div>
               {% block content %}
               <div class="links">
                 <h3>{% trans "Useful links" %}</h3>
