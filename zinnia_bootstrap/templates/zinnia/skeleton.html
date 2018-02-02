@@ -45,14 +45,29 @@
       }
       */
       a.navbar-brand {
-        padding-top: 8px;
-        padding-bottom: 8px;
-        padding-left: 0px;
-        padding-right: 0px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        margin-left: 0px;
+        margin-right: 0px;
         text-align: center;
-        margin: auto;
+        padding: 0px;
+        height: 0px;
       }
+      img.home-img {
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+      border: 1px solid #ccc;
+      }
+
       .navbar-btn {
+        color: #000;
+        background-color: #fff;
+        border-color: #ccc;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        border: 1px solid #ccc;
+        width: 32px;
+        height: 32px;
+        text-align: center;
+        padding: 0px;
       }
       .wrapper {
         display: flex;
@@ -146,6 +161,11 @@
         background: #7386D5;
         color: #fff;
         transition: all 0.3s;
+      }
+
+      #sidebar .sidebar-search {
+        min-height: 50px;
+        background: #6d7fcc;
       }
 
       #sidebar .container {
@@ -248,7 +268,7 @@
         height: 34px;
         line-height: 34px;
         text-align: center;
-        color: #3596e0;
+        color: #000;
       }
     </style>
     <!--[if lt IE 9]>
@@ -289,8 +309,21 @@
           </a>
         </div>
 
+        <div class="sidebar-search">
+          <div class="col-xs-12 visible-xs">
+            <form action="{% url 'zinnia:entry_search' %}" class="search-form">
+              <div class="form-group has-feedback">
+                <label for="search" class="sr-only">Search</label>
+                <input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />
+                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+              </div>
+            </form>
+          </div>
+        </div>
+
         <!-- Sidebar Links -->
         <div class="container">
+
           <ul class="list-unstyled components">
             {% block sidebar %}
             {% endblock sidebar %}
@@ -341,7 +374,7 @@
               <div class="visible-xs col-xs-6">
                 <div class="pull-right">
                   <a href="{% url 'zinnia:entry_archive_index' %}" title="Rockheung's Playground" class="navbar-brand" rel="home">
-                    <img src="{% static "zinnia_bootstrap/img/home.png" %}" class="img-rounded" alt="Rockheung's Playground" />
+                    <img src="{% static "zinnia_bootstrap/img/home.png" %}" class="img-rounded home-img" alt="Rockheung's Playground" />
                   </a>
                 </div>
               </div>
@@ -349,7 +382,7 @@
               <div class="hidden-xs col-sm-4">
                 <div class="col-sm-12 text-center">
                   <a href="{% url 'zinnia:entry_archive_index' %}" title="Rockheung's Playground" class="navbar-brand aps-pos" rel="home">
-                    <img src="{% static "zinnia_bootstrap/img/home.png" %}" class="img-rounded" alt="Rockheung's Playground" />
+                    <img src="{% static "zinnia_bootstrap/img/home.png" %}" class="img-rounded home-img" alt="Rockheung's Playground" />
                   </a>
                 </div>
               </div>
