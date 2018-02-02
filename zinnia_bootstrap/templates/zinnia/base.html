@@ -17,6 +17,43 @@
   </div>
 </aside>
 -->
+
+{% if user.is_authenticated %}
+<ul class="list-unstyled components">
+  <li class="active">
+    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true">
+      {% trans "Tools" %}
+    </a>
+    <ul class="collapse list-unstyled" id="homeSubmenu">
+      {% if perms.zinnia %}
+      <li class="">
+        <a href="{% url 'admin:app_list' 'zinnia' %}" title="{% trans "Dashboard" %}">
+          <span class="glyphicon glyphicon-book"></span>
+          {% trans "Dashboard" %}
+        </a>
+      </li>
+      {% endif %}
+      {% if perms.zinnia.add_entry %}
+      <li class="">
+        <a href="{% url 'admin:zinnia_entry_add' %}" title="{% trans "Post an entry" %}">
+          <span class="glyphicon glyphicon-pencil"></span>
+          {% trans "Post an entry" %}
+        </a>
+      </li>
+      {% endif %}
+      {% block admin-tools %}
+      {% endblock admin-tools %}
+      <li class="">
+        <a href="{% url 'admin:logout' %}" title="{% trans "Log out" %}">
+          <span class="glyphicon glyphicon-off"></span>
+          {% trans "Log out" %}
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+{% endif %}
+<!--
 {% if user.is_authenticated %}
 <aside id="widget-tools" class="widget panel panel-danger">
   <div class="panel-heading">
@@ -39,8 +76,6 @@
       </a>
     </li>
     {% endif %}
-    {% block admin-tools %}
-    {% endblock admin-tools %}
     <li class="list-group-item">
       <a href="{% url 'admin:logout' %}" title="{% trans "Log out" %}">
         <span class="glyphicon glyphicon-off"></span>
@@ -50,12 +85,24 @@
   </ul>
 </aside>
 {% endif %}
+-->
+<ul class="list-unstyled components">
+  <li class="active">
+    <a href="#categorySubmenu" data-toggle="collapse" aria-expanded="true">
+      {% trans "Categories" %}
+    </a>
+    {% get_categories %}
+  </li>
+</ul>
+
+<!--
 <aside id="widget-categories" class="widget panel panel-default">
   <div class="panel-heading">
     {% trans "Categories" %}
   </div>
   {% get_categories %}
 </aside>
+-->
 <!--
 <aside id="widget-authors" class="widget panel panel-default">
   <div class="panel-heading">
