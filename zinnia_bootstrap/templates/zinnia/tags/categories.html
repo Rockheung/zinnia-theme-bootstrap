@@ -1,20 +1,4 @@
 {% load i18n %}
-<!--
-  {% for category in categories %}
-  <li class="{% if category.slug == context_category.slug %} current{% endif %}">
-    <a href="{{ category.get_absolute_url }}"
-       title="{% blocktrans %}show all entries in {{ category }}{% endblocktrans %}">{{ category }}
-      <span class="label label-info">
-        {% blocktrans count entry_count=category.count_entries_published %}{{ entry_count }} entry{% plural %}{{ entry_count }} entries{% endblocktrans %}
-      </span>
-    </a>
-  </li>
-  {% empty %}
-  <li class="">
-    <a href="#">{% trans "no categories yet." %}</a>
-  </li>
-  {% endfor %}
--->
 <ul class="collapse list-unstyled" id="categorySubmenu">
   {% for category in categories %}
   <li class="{% if category.slug == context_category.slug %} current{% endif %}">

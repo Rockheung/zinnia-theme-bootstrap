@@ -34,7 +34,8 @@
       a.aps-pos {
         position: absolute;
       }
-      .navbar {
+      /*
+      nav.navbar {
         padding: 15px 10px;
         background: #fff;
         border: none;
@@ -42,6 +43,7 @@
         margin-bottom: 40px;
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
       }
+      */
       a.navbar-brand {
         padding-top: 8px;
         padding-bottom: 8px;
@@ -65,6 +67,19 @@
       #sidebar.active {
         margin-left: -250px;
       }
+
+      #content {
+        width: calc(100% - 250px);
+        min-height: 100vh;
+        transition: all 0.3s;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 15px;
+      }
+      #content.active {
+        width: 100%;
+      }
       a[data-toggle="collapse"] {
         position: relative;
       }
@@ -82,12 +97,18 @@
         content: '\e260';
       }
 
-      @media (max-width: 1490px) {
+      @media (max-width: 768px) {
         #sidebar {
           margin-left: -250px;
         }
         #sidebar.active {
           margin-left: 0;
+        }
+        #content {
+          width: 100%;
+        }
+        #content.active {
+          width: calc(100% - 250px);
         }
       }
       /*
@@ -117,19 +138,28 @@
 
       #sidebar {
         /* don't forget to add all the previously mentioned styles here too */
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 999;
         background: #7386D5;
         color: #fff;
         transition: all 0.3s;
       }
 
+      #sidebar .container {
+        width: 250px;
+        padding: 0;
+      }
+
       #sidebar .sidebar-header {
-        padding: 20px;
+        padding: 15px;
         background: #6d7fcc;
       }
 
       #sidebar ul.components {
-        padding: 20px 0;
-        border-bottom: 1px solid #47748b;
+        padding: 15px 0;
       }
 
       #sidebar ul p {
@@ -156,24 +186,18 @@
         padding-left: 30px !important;
         background: #6d7fcc;
       }
-      #content {
-        width: 100%;
-        padding: 20px;
-        min-height: 100vh;
-        transition: all 0.3s;
-      }
 
       /*
       .container {
         width: 100%;
       }
+      */
 
       .container-fluid {
         padding:0px;
         margin-left: auto;
         margin-right: auto;
       }
-      */
 
       .search-form .form-group {
         float: right !important;
@@ -265,16 +289,22 @@
           </a>
         </div>
 
-              <div class="container" style="width: 250px;">
-                {% block sidebar %}
-                {% endblock sidebar %}
-              </div>
         <!-- Sidebar Links -->
+        <div class="container">
+          <ul class="list-unstyled components">
+            {% block sidebar %}
+            {% endblock sidebar %}
+          </ul>
+        </div>
+        <footer class="container">
+          <p>{% blocktrans %}Powered by <a href="http://www.djangoproject.com">Django</a> and <a href="https://github.com/Fantomas42/django-blog-zinnia">Zinnia {{ ZINNIA_VERSION }}</a>.{% endblocktrans %}</p>
+        </footer>
+        <!--
         <ul class="list-unstyled components">
           <li class="active"><a href="#">Home</a></li>
           <li><a href="#">About</a></li>
 
-          <li><!-- Link with dropdown items -->
+          <li>
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
               <li><a href="#">Page</a></li>
@@ -286,68 +316,56 @@
             <li><a href="#">Contact</a></li>
           </li>
         </ul>
-          <footer class="container">
-            <p>{% blocktrans %}Powered by <a href="http://www.djangoproject.com">Django</a> and <a href="https://github.com/Fantomas42/django-blog-zinnia">Zinnia {{ ZINNIA_VERSION }}</a>.{% endblocktrans %}</p>
-          </footer>
+        -->
       </nav>
 
       <div id="content">
-        <nav class="navbar navbar-default" role="navigation">
-          <div class="container">
+        <nav class="navbar" role="navigation">
+          <div class="container-fluid">
             <div class="navbar-header">
             </div>
 
             <div class="container-fluid">
-              <div class="row">
 
-                <!-- toggle button -->
-                <!--
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <!-- toggle button -->
+              <div class="col-xs-6 col-sm-4">
+                <button type="button" id="sidebarCollapse" class="btn navbar-btn">
                   <span class="sr-only">{% trans "Toggle navigation" %}</span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
+                  <i class="glyphicon glyphicon-align-left"></i>
                 </button>
-                -->
-                <div class="col-xs-6 col-sm-4">
-                  <button type="button" id="sidebarCollapse" class="btn navbar-btn">
-                    <span class="sr-only">{% trans "Toggle navigation" %}</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <i class="glyphicon glyphicon-align-left"></i>
-                  </button>
-                </div>
-
-                <div class="visible-xs col-xs-6">
-                  <div class="pull-right">
-                    <a href="{% url 'zinnia:entry_archive_index' %}" title="Rockheung's Playground" class="navbar-brand" rel="home">
-                      <img src="{% static "zinnia_bootstrap/img/home.png" %}" class="img-rounded" alt="Rockheung's Playground" />
-                    </a>
-                  </div>
-                </div>
-
-                <div class="hidden-xs col-sm-4">
-                  <div class="col-sm-12 text-center">
-                    <a href="{% url 'zinnia:entry_archive_index' %}" title="Rockheung's Playground" class="navbar-brand aps-pos" rel="home">
-                      <img src="{% static "zinnia_bootstrap/img/home.png" %}" class="img-rounded" alt="Rockheung's Playground" />
-                    </a>
-                  </div>
-                </div>
-
-                <div class="clearfix visible-xs"></div>
-
-                <div class="col-xs-12 col-sm-4 hidden-xs">
-                  <form action="{% url 'zinnia:entry_search' %}" class="search-form">
-                    <div class="form-group has-feedback">
-                      <label for="search" class="sr-only">Search</label>
-                      <input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />
-                      <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                    </div>
-                  </form>
-                </div>
-
               </div>
+
+              <div class="visible-xs col-xs-6">
+                <div class="pull-right">
+                  <a href="{% url 'zinnia:entry_archive_index' %}" title="Rockheung's Playground" class="navbar-brand" rel="home">
+                    <img src="{% static "zinnia_bootstrap/img/home.png" %}" class="img-rounded" alt="Rockheung's Playground" />
+                  </a>
+                </div>
+              </div>
+
+              <div class="hidden-xs col-sm-4">
+                <div class="col-sm-12 text-center">
+                  <a href="{% url 'zinnia:entry_archive_index' %}" title="Rockheung's Playground" class="navbar-brand aps-pos" rel="home">
+                    <img src="{% static "zinnia_bootstrap/img/home.png" %}" class="img-rounded" alt="Rockheung's Playground" />
+                  </a>
+                </div>
+              </div>
+
+              <div class="clearfix visible-xs"></div>
+
+              <div class="col-xs-12 col-sm-4 hidden-xs">
+                <form action="{% url 'zinnia:entry_search' %}" class="search-form">
+                  <div class="form-group has-feedback">
+                    <label for="search" class="sr-only">Search</label>
+                    <input type="text" class="search-query form-control" placeholder="{% trans 'Search' %}" name="pattern" value="{{ pattern }}" />
+                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                  </div>
+                </form>
+              </div>
+
             </div>
             <!--
             <div class="container">
@@ -403,7 +421,7 @@
           </div>
         </nav>
         {% block slider %}{% endblock %}
-        <div class="container">
+        <div class="container-fluid">
           <div class="row">
             <div class="col-xs-10 col-xs-push-1">
               {% block breadcrumbs %}{% endblock %}
@@ -444,6 +462,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
 
@@ -453,7 +473,7 @@
 
         $('#sidebarCollapse').on('click', function () {
           // open or close navbar
-          $('#sidebar').toggleClass('active');
+          $('#sidebar, #content').toggleClass('active');
           // close dropdowns
           $('.collapse.in').toggleClass('in');
           // and also adjust aria-expanded attributes we use for the open/closed arrows
@@ -464,6 +484,5 @@
       });
     </script>
     <!-- Custom Scroller Js CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
   </body>
 </html>

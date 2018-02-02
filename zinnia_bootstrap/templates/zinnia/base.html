@@ -19,9 +19,8 @@
 -->
 
 {% if user.is_authenticated %}
-<ul class="list-unstyled components">
-  <li class="active">
-    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true">
+  <li class="">
+    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
       {% trans "Tools" %}
     </a>
     <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -51,9 +50,56 @@
       </li>
     </ul>
   </li>
-</ul>
 {% endif %}
+
+  <li class="active">
+    <a href="#categorySubmenu" data-toggle="collapse" aria-expanded="false">
+      {% trans "Categories" %}
+    </a>
+    {% get_categories %}
+  </li>
+
+  <li class="active">
+    <a href="#recententriesSubmenu" data-toggle="collapse" aria-expanded="false">
+      {% trans "Recent entries" %}
+    </a>
+    {% get_recent_entries %}
+  </li>
+
+  <li class="active">
+    <a href="#recentcommentsSubmenu" data-toggle="collapse" aria-expanded="false">
+      {% trans "Recent comments" %}
+    </a>
+    {% get_recent_comments %}
+  </li>
+
+  <li class="active">
+    <a href="#recentlinkbacksSubmenu" data-toggle="collapse" aria-expanded="false">
+      {% trans "Recent linkbacks" %}
+    </a>
+    {% get_recent_linkbacks %}
+  </li>
+
 <!--
+<aside id="widget-recents" class="widget panel panel-default">
+  <div class="panel-heading">
+    {% trans "Recent entries" %}
+  </div>
+  {% get_recent_entries %}
+</aside>
+<aside id="widget-comments" class="widget panel panel-default">
+  <div class="panel-heading">
+    {% trans "Recent comments" %}
+  </div>
+  {% get_recent_comments %}
+</aside>
+<aside id="widget-linkbacks" class="widget panel panel-default">
+  <div class="panel-heading">
+    {% trans "Recent linkbacks" %}
+  </div>
+  {% get_recent_linkbacks %}
+</aside>
+
 {% if user.is_authenticated %}
 <aside id="widget-tools" class="widget panel panel-danger">
   <div class="panel-heading">
@@ -85,17 +131,7 @@
   </ul>
 </aside>
 {% endif %}
--->
-<ul class="list-unstyled components">
-  <li class="active">
-    <a href="#categorySubmenu" data-toggle="collapse" aria-expanded="true">
-      {% trans "Categories" %}
-    </a>
-    {% get_categories %}
-  </li>
-</ul>
 
-<!--
 <aside id="widget-categories" class="widget panel panel-default">
   <div class="panel-heading">
     {% trans "Categories" %}
@@ -111,24 +147,6 @@
   {% get_authors %}
 </aside>
 -->
-<aside id="widget-recents" class="widget panel panel-default">
-  <div class="panel-heading">
-    {% trans "Recent entries" %}
-  </div>
-  {% get_recent_entries %}
-</aside>
-<aside id="widget-comments" class="widget panel panel-default">
-  <div class="panel-heading">
-    {% trans "Recent comments" %}
-  </div>
-  {% get_recent_comments %}
-</aside>
-<aside id="widget-linkbacks" class="widget panel panel-default">
-  <div class="panel-heading">
-    {% trans "Recent linkbacks" %}
-  </div>
-  {% get_recent_linkbacks %}
-</aside>
 <!--
 <aside id="widget-randoms" class="widget panel panel-default">
   <div class="panel-heading">
