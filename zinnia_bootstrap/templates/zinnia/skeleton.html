@@ -80,6 +80,13 @@
         max-width: 250px;
         height: 100vh;
       }
+      #sidebar footer.container {
+        position: relatied;
+        bottom: 0;
+        left: 0;
+        z-index: 500;
+        color: #ddd;
+      }
 
       #sidebar.active {
         margin-left: -250px;
@@ -505,6 +512,7 @@
                 {% include "zinnia/tags/search_form.html" %}
               </div>
               {% endblock content %}
+
             </div>
             <!--
             -->

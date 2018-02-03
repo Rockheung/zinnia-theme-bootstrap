@@ -2,6 +2,8 @@
 {% load i18n zinnia %}
 
 {% block entry-widgets %}
+<!--
+<h1>Here I am!</h1>
 <aside class="entry-widgets" role="complementary">
   {% block entry-related-entries %}
   {% with entry_related=object.related_published %}
@@ -54,9 +56,11 @@
   </div>
   {% endblock entry-previous-next-entries %}
 </aside>
+-->
 {% endblock entry-widgets %}
 
 {% block entry-pingbacks %}
+<!--
 {% if object.pingback_count %}
 <section id="pingbacks" class="panel panel-info">
   <div class="panel-heading">
@@ -99,9 +103,11 @@
 <p>{% trans "Pingbacks are closed." %}</p>
 {% endif %}
 {% endblock pingbacks-status %}
+-->
 {% endblock entry-pingbacks %}
 
 {% block entry-trackbacks %}
+<!--
 {% if object.trackback_count %}
 <section id="trackbacks" class="panel panel-info">
   <div class="panel-heading">
@@ -145,9 +151,11 @@
 </p>
 {% endif %}
 {% endblock trackbacks-status %}
+-->
 {% endblock entry-trackbacks %}
 
 {% block entry-comments %}
+<!--
 {% if object.comment_count %}
 <section id="comments" class="panel panel-info">
   <div class="panel-heading">
@@ -196,6 +204,7 @@
 <p>{% trans "Comments are closed." %}</p>
 {% endif %}
 {% endif %}
+-->
 {% endblock entry-comments %}
 
 {% block admin-tools %}
