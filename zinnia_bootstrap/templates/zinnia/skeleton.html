@@ -87,7 +87,9 @@
         height: 100vh;
       }
       #sidebar footer.container {
-        position: relatied;
+        position: absolute;
+        min-height: 10px;
+        top: 95vh;
         bottom: 0;
         left: 0;
         z-index: 500;
@@ -195,7 +197,7 @@
         top: 0;
         left: 0;
         height: 100vh;
-        z-index: 999;
+        z-index: 10;
         background: #7386D5;
         color: #fff;
         transition: all 0.3s;
@@ -207,6 +209,7 @@
       }
 
       #sidebar .container {
+        height: 85vh;
         width: 250px;
         padding: 0;
       }
@@ -242,7 +245,6 @@
       ul ul a {
         font-size: 0.9em !important;
         padding-left: 30px !important;
-        background: #6d7fcc;
       }
 
       /*
@@ -306,6 +308,45 @@
         text-align: center;
         color: #000;
       }
+
+      #recentcomments li.dsq-widget-item {
+        margin: 0px;
+      }
+      #recentcomments li.dsq-widget-item a {
+        display: none;
+      }
+      /*
+      #recentcomments li.dsq-widget-item img {
+        display: none;
+      }
+      */
+      #recentcomments li.dsq-widget-item p.dsq-widget-meta {
+        padding: 0px;
+        display: flex;
+        flex-direction: row-reverse;
+      }
+      #recentcomments li.dsq-widget-item p.dsq-widget-meta a{
+        float: right;
+        display: block;
+      }
+      /*
+      #recentcomments li.dsq-widget-item a.dsq-widget-user{
+        display: none;
+      }
+      */
+      #recentcomments li.dsq-widget-item span.dsq-widget-comment {
+        height: 0px;
+        padding: 0px;
+        width: 0px;
+        z-index: 100;
+      }
+      #recentcomments li.dsq-widget-item span.dsq-widget-comment p {
+        display: block;
+        margin: 0px;
+        padding: 0px;
+        height: 0px;
+        width: 0px;
+      }
     </style>
     <!--[if lt IE 9]>
         <script src="{% static "zinnia_bootstrap/assets/js/html5shiv.js" %}"></script>
@@ -345,8 +386,8 @@
           </a>
         </div>
 
-        <div class="sidebar-search">
-          <div class="col-xs-12 visible-xs">
+        <div class="sidebar-search visible-xs">
+          <div class="col-xs-12">
             <form action="{% url 'zinnia:entry_search' %}" class="search-form">
               <div class="form-group has-feedback">
                 <label for="search" class="sr-only">Search</label>
@@ -499,6 +540,7 @@
                 {% block breadcrumbs %}{% endblock %}
               </div>
               {% block content %}
+              <!--
               <div class="links">
                 <h3>{% trans "Useful links" %}</h3>
                 <ul>
@@ -518,6 +560,7 @@
                 <h3>{% trans "Search" %}</h3>
                 {% include "zinnia/tags/search_form.html" %}
               </div>
+              -->
               {% endblock content %}
 
             </div>
@@ -526,6 +569,7 @@
           </div>
         </div>
       </div>
+
 
     </div>
     <!--
@@ -538,6 +582,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- Custom -->
     <script type="text/javascript">
       $(document).ready(function () {
 
@@ -549,7 +594,7 @@
           // open or close navbar
           $('#sidebar, #content').toggleClass('active');
           // close dropdowns
-          $('.collapse.in').toggleClass('in');
+          $('#sidebar.collapse.in').toggleClass('in');
           // and also adjust aria-expanded attributes we use for the open/closed arrows
           // in our CSS
           $('.page-header').toggleClass('active');
@@ -559,6 +604,5 @@
 
       });
     </script>
-    <!-- Custom Scroller Js CDN -->
   </body>
 </html>
