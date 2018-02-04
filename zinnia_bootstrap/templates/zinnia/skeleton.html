@@ -53,8 +53,10 @@
       img.home-img {
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
         border: 1px solid #ccc;
+        border-color: #ccc;
         width: 32px;
         height: 32px;
+        border-radius: 4px;
       }
 
       .navbar-btn {
@@ -75,25 +77,38 @@
         display: flex;
         align-items: stretch;
       }
-      .page-header {
+      .breadcrumbs {
         position: sticky;
         top: 0px;
-        padding-top: 10px;
-        background: linear-gradient( to bottom, rgba(250,250,250,1), rgba(250,250,250,1), rgba(250,250,250,1), rgba(250,250,250,0)  );
+        padding: 15px 0 15px;
+        background: linear-gradient( to bottom, rgba(250,250,250,1), rgba(250,250,250,1), rgba(250,250,250,0)  );
+      }
+      .breadcrumbs ul{
+        padding: 5px 10px;
+      }
+      .page-header {
+        padding-bottom: 50px;
       }
       #sidebar {
         min-width: 250px;
         max-width: 250px;
         height: 100vh;
       }
+
       #sidebar footer.container {
         position: absolute;
-        min-height: 10px;
-        top: 95vh;
+        max-height: 15px;
+        top: calc(100vh - 30px);
         bottom: 0;
         left: 0;
         z-index: 500;
         color: #ddd;
+      }
+
+      #sidebar .container {
+        height: calc(100vh - 132px);
+        width: 250px;
+        padding: 0;
       }
 
       #sidebar.active {
@@ -132,6 +147,9 @@
         #sidebar {
           margin-left: -250px;
         }
+        #sidebar .container {
+          height: calc(100vh - 182px);
+        }
         #sidebar.active {
           margin-left: 0;
         }
@@ -143,9 +161,6 @@
         }
         #content.active .container-fluid {
           min-width: 320px;
-        }
-        .page-header.active {
-          left: 15px;
         }
       }
 
@@ -183,12 +198,14 @@
         font-weight: 300;
         line-height: 1.7em;
         color: #999;
+        text-indent: -15px;
       }
 
       a, a:hover, a:focus {
         color: inherit;
         text-decoration: none;
         transition: all 0.3s;
+        line-height: 1.7em;
       }
 
       #sidebar {
@@ -206,12 +223,6 @@
       #sidebar .sidebar-search {
         min-height: 50px;
         background: #6d7fcc;
-      }
-
-      #sidebar .container {
-        height: 85vh;
-        width: 250px;
-        padding: 0;
       }
 
       #sidebar .sidebar-header {
@@ -243,7 +254,6 @@
         background: #6d7fcc;
       }
       ul ul a {
-        font-size: 0.9em !important;
         padding-left: 30px !important;
       }
 
@@ -261,7 +271,7 @@
 
       .search-form .form-group {
         float: right !important;
-        transition: all 0.35s, border-radius 0s;
+        transition: all 0.35s;
         width: 32px;
         height: 32px;
         background-color: #fff;
@@ -310,7 +320,11 @@
       }
 
       #recentcomments li.dsq-widget-item {
+        display: flex;
+        flex-direction: row-reverse;
+        padding: 0px;
         margin: 0px;
+        float: left;
       }
       #recentcomments li.dsq-widget-item a {
         display: none;
@@ -319,15 +333,30 @@
       #recentcomments li.dsq-widget-item img {
         display: none;
       }
-      */
+       */
+      #recentcomments li.dsq-widget-item p {
+        text-indent: 0px;
+      }
       #recentcomments li.dsq-widget-item p.dsq-widget-meta {
+        font-size: 0em;
+        width: 250px;
+        height: 46px;
         padding: 0px;
+      }
+      #recentcomments li.dsq-widget-item p.dsq-widget-meta a {
+        width: 250px;
+        height: 46px;
         display: flex;
         flex-direction: row-reverse;
+        position: fixed;
+        font-size: 1.54rem;
+        padding: 10px 10px 10px 30px;
+        color: rgba(0,0,0,0);
+        overflow: hidden;
       }
-      #recentcomments li.dsq-widget-item p.dsq-widget-meta a{
-        float: right;
-        display: block;
+      #recentcomments li.dsq-widget-item p.dsq-widget-meta a:hover {
+        color: #7386D5;
+        background: #fff;
       }
       /*
       #recentcomments li.dsq-widget-item a.dsq-widget-user{
@@ -335,18 +364,25 @@
       }
       */
       #recentcomments li.dsq-widget-item span.dsq-widget-comment {
-        height: 0px;
-        padding: 0px;
-        width: 0px;
-        z-index: 100;
+        display: inherit;
+        margin: 0px;
+        position: absolute;
+        left: 0px;
       }
       #recentcomments li.dsq-widget-item span.dsq-widget-comment p {
-        display: block;
+        color: #fff;
+        width: 250px;
+        padding: 10px 10px 10px 30px;
         margin: 0px;
-        padding: 0px;
-        height: 0px;
-        width: 0px;
+        font-size: 1.1em;
       }
+      /*
+      #recentcomments li.dsq-widget-item span.dsq-widget-comment p:hover {
+        color: #7386D5;
+        background: #fff;
+        transition: all 0.3s;
+      }
+      */
     </style>
     <!--[if lt IE 9]>
         <script src="{% static "zinnia_bootstrap/assets/js/html5shiv.js" %}"></script>
@@ -406,9 +442,6 @@
             {% endblock sidebar %}
           </ul>
         </div>
-        <footer class="container">
-          <p>{% blocktrans %}Powered by <a href="http://www.djangoproject.com">Django</a> and <a href="https://github.com/Fantomas42/django-blog-zinnia">Zinnia {{ ZINNIA_VERSION }}</a>.{% endblocktrans %}</p>
-        </footer>
         <!--
         <ul class="list-unstyled components">
           <li class="active"><a href="#">Home</a></li>
@@ -442,9 +475,6 @@
               <div class="col-xs-2 col-sm-3">
                 <button type="button" id="sidebarCollapse" class="btn navbar-btn">
                   <span class="sr-only">{% trans "Toggle navigation" %}</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
                   <i class="glyphicon glyphicon-align-left"></i>
                 </button>
               </div>
@@ -535,8 +565,8 @@
         {% block slider %}{% endblock %}
         <div class="container-fluid">
           <div class="row">
-            <div class="col-xs-11 col-xs-push-1 col-sm-10 col-sm-push-1">
-              <div class="hidden-xs">
+            <div class="col-xs-11 col-xs-push-1 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
+              <div class="breadcrumbs">
                 {% block breadcrumbs %}{% endblock %}
               </div>
               {% block content %}
@@ -563,6 +593,9 @@
               -->
               {% endblock content %}
 
+              <footer class="text-center">
+                <p>{% blocktrans %}Powered by <a href="http://www.djangoproject.com">Django</a> and <a href="https://github.com/Fantomas42/django-blog-zinnia">Zinnia {{ ZINNIA_VERSION }}</a>.{% endblocktrans %}</p>
+              </footer>
             </div>
             <!--
             -->
