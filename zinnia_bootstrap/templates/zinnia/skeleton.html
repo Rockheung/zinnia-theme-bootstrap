@@ -35,9 +35,12 @@
         margin-bottom: 1px;
       }
 
+      article.hentry.featured {
+      }
+
       p {
         font-family: 'Nanum Gothic', sans-serif;
-        font-size: 1.1em;
+        font-size: 1em;
         font-weight: 300;
         line-height: 1.7em;
         color: #2D2C4D;
@@ -340,9 +343,15 @@
         background-color: transparent;
         border: 0px;
       }
-      #content div.entry-body a:hover {
+      #content div.entry-body div.entry-content a {
         color: #5F4B8B;
-        transition: unset;
+        border-radius: 4px;
+        transition: all 0.3s ;
+        border-left: 8px solid;
+      }
+      #content div.entry-body div.entry-content a:hover {
+        color: #FFFFFF;
+        background: #5F4B8B;
       }
       @media (max-width: 768px) {
         #sidebar {
@@ -550,7 +559,9 @@
             -->
           </div>
         </nav>
+        <!--
         {% block slider %}{% endblock %}
+        -->
         <div class="container-fluid">
           <div class="row">
             <div class="col-xs-11 col-xs-push-1 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
