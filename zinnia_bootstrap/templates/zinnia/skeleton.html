@@ -434,6 +434,12 @@
         background: #5F4B8B;
       }
       @media (max-width: 768px) {
+        div.breadcrumbs li {
+          display: none;
+        }
+        div.breadcrumbs li.active {
+          display: inherit;
+        }
         #sidebar {
           margin-left: -250px;
         }
@@ -446,6 +452,15 @@
         #content {
           width: 100%;
         }
+        #content h2.entry-title {
+          font-size: 22px;
+        }
+        #content div.entry-body blockquote {
+          font-size: 13px;
+        }
+        #content div.entry-body pre code {
+          font-size: 1.14em;
+        }
         #content .container-fluid{
           min-width: calc(320px - calc(15px * 2));
         }
@@ -455,6 +470,8 @@
         #content.active .container-fluid {
           min-width: 320px;
         }
+      }
+      @media (max-width: 320px) {
       }
     </style>
     <!--[if lt IE 9]>
