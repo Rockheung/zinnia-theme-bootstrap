@@ -96,10 +96,6 @@
         height: 32px;
         background-color: transparent;
       }
-      ul ul a {
-        padding-left: 30px !important;
-      }
-
       .navbar-btn {
         color: #2D2C4D;
         background-color: transparent;
@@ -200,6 +196,9 @@
         color: #FFFFFF;
         transition: all 0.3s;
       }
+      #sidebar ul ul a {
+        padding-left: 30px !important;
+      }
 
       #sidebar span.label {
         font-size: 1.1rem;
@@ -239,6 +238,41 @@
         font-size: 1.5em;
         font-weight: 500;
         line-height: 32px;
+      }
+
+      #sidebar .tag-cloud {
+        padding: 10px 10px 10px 30px;
+        font-size: 1.4em;
+        line-height: 1.68em;
+      }
+      #sidebar .tag-cloud li {
+        list-style: none;
+        display: inline;
+      }
+      #sidebar .tag-cloud li a {
+        display: inherit;
+        padding: 5px !important;
+        text-align: left;
+        word-break: keep-all;
+        border-radius: 4px;
+      }
+      #sidebar .tag-cloud .tag-1 {
+        font-size: 0.7em;
+      }
+      #sidebar .tag-cloud .tag-2 {
+        font-size: 0.93333em;
+      }
+      #sidebar .tag-cloud .tag-3 {
+        font-size: 1.05em;
+      }
+      #sidebar .tag-cloud .tag-4 {
+        font-size: 1.86667em;
+      }
+      #sidebar .tag-cloud .tag-5 {
+        font-size: 2.1em;
+      }
+      #sidebar .tag-cloud .tag-6 {
+        font-size: 2.8em;
       }
 
       #sidebar ul.components {
@@ -332,10 +366,56 @@
       #content article.hentry {
         margin-bottom: 50px;
       }
-      #content div.entry-body {
+      #content div.entry-body p {
         text-indent: -15px;
         text-align: justify;
+        margin: 0 0 20px;
       }
+      #content div.entry-body img {
+        width: 100%;
+        height: auto;
+      }
+
+      #content div.entry-body pre {
+        background: #2D2C4D;
+        color: #FFFFFF;
+        margin: 0 0 20px;
+      }
+
+      #content div.entry-body pre code {
+        font-family: 'Nanum Gothic Coding', serif;
+        font-size: 1.5em;
+      }
+
+      /* table */
+      #content div.entry-body table {
+        border-collapse: collapse;
+        text-align: left;
+        line-height: 1.5;
+        margin: 0 0 20px;
+      }
+      #content div.entry-body table thead th {
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        color: #369;
+        border-bottom: 3px solid #036;
+      }
+      #content div.entry-body table tbody th {
+        width: 150px;
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        border-bottom: 1px solid #ccc;
+        background: #f3f6f7;
+      }
+      #content div.entry-body table td {
+        width: 350px;
+        padding: 10px;
+        vertical-align: top;
+        border-bottom: 1px solid #ccc;
+      }
+
       #content small.entry-info {
         font-size: 45%;
       }
@@ -401,7 +481,6 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css">
     <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css">
     <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanummyeongjo.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/nanumbarungothic.css">
 
     {% block link %}{% endblock link %}
     {% block script %}{% endblock script %}
