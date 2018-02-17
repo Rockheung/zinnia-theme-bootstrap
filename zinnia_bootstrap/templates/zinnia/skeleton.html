@@ -107,10 +107,12 @@
         position: fixed;
         margin: 0px;
       }
+      /*
       .wrapper {
         display: flex;
         align-items: stretch;
       }
+      */
       .breadcrumbs {
         position: -webkit-sticky;
         position: sticky;
@@ -182,6 +184,36 @@
         line-height: 34px;
         text-align: center;
         color: #2D2C4D;
+      }
+
+      #banner {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        transition: all 0.35s;
+      }
+      #banner.active{
+        margin-left: -250px;
+      }
+
+
+      #banner a{
+        position: absolute;
+        left: 320px;
+        opacity: 0.2;
+        z-index: 20;
+        padding: 3px;
+        margin: 15px 0 15px;
+        background: #2D2C4D;
+        filter: blur(1px);
+        border-radius: 4px;
+      }
+
+      #banner a:hover{
+        -webkit-filter: blur(1px);
+        opacity: 1;
+        filter: none;
+        background: #2D2C4D;
       }
 
       #sidebar {
@@ -257,22 +289,22 @@
         border-radius: 4px;
       }
       #sidebar .tag-cloud .tag-1 {
-        font-size: 0.7em;
+        font-size: 1.11923rem;
       }
       #sidebar .tag-cloud .tag-2 {
-        font-size: 0.93333em;
+        font-size: 1.25267rem;
       }
       #sidebar .tag-cloud .tag-3 {
-        font-size: 1.05em;
+        font-size: 1.40202rem;
       }
       #sidebar .tag-cloud .tag-4 {
-        font-size: 1.86667em;
+        font-size: 1.56918rem;
       }
       #sidebar .tag-cloud .tag-5 {
-        font-size: 2.1em;
+        font-size: 1.75627rem;
       }
       #sidebar .tag-cloud .tag-6 {
-        font-size: 2.8em;
+        font-size: 1.96567rem;
       }
 
       #sidebar ul.components {
@@ -366,6 +398,10 @@
       #content article.hentry {
         margin-bottom: 50px;
       }
+      #content div.entry-body h2,h3 {
+        margin: 0 0 20px;
+      }
+
       #content div.entry-body p {
         text-indent: -15px;
         text-align: justify;
@@ -382,9 +418,33 @@
         margin: 0 0 20px;
       }
 
+      #content div.entry-body p code {
+        font-family: 'Nanum Gothic Coding', serif;
+      }
+
       #content div.entry-body pre code {
         font-family: 'Nanum Gothic Coding', serif;
         font-size: 1.5em;
+      }
+      #content div.entry-body p.continue-reading {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        text-align: center;
+        transition: all 0.3s ;
+      }
+      #content div.entry-body p.continue-reading a {
+        text-indent: initial;
+        display: block;
+        width: 130px;
+        padding: 0 5px;
+        border-style: solid;
+        border-radius: 4px;
+        border-width: 0 1px;
+      }
+      #content div.entry-body p.continue-reading a:hover {
+        width: 100%;
+        font-weight: 600;
       }
 
       /* table */
@@ -503,6 +563,15 @@
     {% block script %}{% endblock script %}
   </head>
   <body class="zinnia {% block body-class %}{% endblock body-class %}">
+
+    <div class="container-fluid">
+      <div id="banner" class="hidden-xs col-sm-12">
+        <a href="http://plex.rockheung.xyz" target="_blank">
+          <img src="https://res.cloudinary.com/rockheung/image/upload/v1518684835/plex-logo_cn5za9.png"/>
+        </a>
+      </div>
+    </div>
+
 
     <!-- a collapsible HTML sidebar navigation -->
     <div class="wrapper">
@@ -720,7 +789,7 @@
 
         $('#sidebarCollapse').on('click', function () {
           // open or close navbar
-          $('#sidebar, #content').toggleClass('active');
+          $('#sidebar, #content, #banner').toggleClass('active');
           // close dropdowns
           $('#sidebar.collapse.in').toggleClass('in');
           // and also adjust aria-expanded attributes we use for the open/closed arrows
