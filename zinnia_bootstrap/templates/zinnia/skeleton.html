@@ -22,6 +22,10 @@
     <!--
     <link rel="stylesheet" href="{% static "zinnia_bootstrap/bootstrap/css/bootstrap.min.css" %}" />
     -->
+    <!-- D2-coding webfont -->
+    <link rel="stylesheet" href="{% static "font/d2coding.css" %}" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Monofett|Zilla+Slab+Highlight:700" rel="stylesheet">
+
     <style type="text/css">
       body {
         font-family: 'Nanum Gothic', sans-serif;
@@ -263,13 +267,20 @@
       }
 
       #sidebar .sidebar-header a {
-        display: block;
+        display: flex;
         height: 62px;
         padding:  15px;
         background: #3686A0;
-        font-size: 1.5em;
-        font-weight: 500;
+        font-family: 'Monofett', 'Zilla Slab Highlight', cursive;
+        font-size: 3.3em;
+        letter-spacing: -0.1em;
         line-height: 32px;
+        white-space: nowrap;
+        justify-content: center;
+      }
+      #sidebar .sidebar-header a:hover {
+        font-size: 4.5em;
+        letter-spacing: -0.15em;
       }
 
       #sidebar .tag-cloud {
@@ -425,11 +436,11 @@
       }
 
       #content div.entry-body p code {
-        font-family: 'Nanum Gothic Coding', monospace;
+        font-family: 'D2 coding', 'Anonymous Pro', monospace;
       }
 
       #content div.entry-body pre code {
-        font-family: 'Nanum Gothic Coding', monospace;
+        font-family: 'D2 coding', 'Anonymous Pro', monospace;
         font-size: 1.5em;
       }
       #content div.entry-body p.continue-reading {
@@ -564,9 +575,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{% static "zinnia_bootstrap/img/favicon-16x16.png" %}" />
     <link rel="manifest" href="{% static "zinnia_bootstrap/manifest.json" %}" />
 
-    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css">
-    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css">
-    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanummyeongjo.css">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Myeongjo" rel="stylesheet">
 
     {% block link %}{% endblock link %}
     {% block script %}{% endblock script %}
@@ -589,7 +598,7 @@
         <!-- Sidebar Header -->
         <div class="sidebar-header text-center">
           <a href="/">
-            Rockheung's Sundry
+            Sundry Codes
           </a>
         </div>
 
